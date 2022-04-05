@@ -4,37 +4,47 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Formulario from './Components/Formulario';
 
-
-const categories = ["People", "Films", "Starships", "Vehicles", "Species", "Planets"];
-
 function App( props ) {
 
   const [responseData, setResponseData] = useState(null);
-  const [categoria, setCategoria] = useState("");
-  const [identificador, setIdentificador] = useState("");
+  const [categoria, setCategoria] = useState("people");
+  const [identificador, setIdentificador] = useState();
 
   //`https://swapi.dev/api/films/1/`
 
-  
+  /*
   useEffect( () => {
+    console.log(categoria, identificador);
     axios.get( `https://swapi.dev/api/${categoria}/${identificador}/` )
       .then( response => {
         const result = response.data;
-        setResponseData( (resultPrev) => result ); 
-        
+        setResponseData( result );         
       })
       .catch( err => {
         console.log(err);
       });     
-  }, [categoria]);
+  }, [categoria, identificador]);
   
-
+  */
+  const consumeAPI = () => {
+    axios.get( `https://swapi.dev/api/${categoria}/${identificador}/` )
+    .then( response => {
+      const result = response.data;
+      setResponseData( result );         
+    })
+    .catch( err => {
+      console.log(err);
+    }); 
+  }
 
   const handleRequest = (e) =>{
     e.preventDefault();
-    setCategoria( (categoriaPrev) => e.target.category.value.toLowerCase() );
-    setIdentificador( (identificadorPrev) => Number(e.target.idInput.value) );
-    console.log(categoria, identificador);
+    setCategoria( e.target.category.value.toLowerCase() );
+    setIdentificador( Number(e.target.id.value) );
+    
+    console.log(categoria, identificador);     
+    
+    consumeAPI(); 
   };
 
   return (

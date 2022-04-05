@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-const categories = ["People", "Ships", "Starships", "Vehicles", "Species", "Planets"];
+const categories = ["People", "Films", "Starships", "Vehicles", "Species", "Planets"];
 
 function Formulario ( props ) {
 
@@ -19,9 +19,10 @@ function Formulario ( props ) {
             </div>
 
             <div className="Id">
-              <label htmlFor='idInput'>ID: </label>
-              <input id="idInput" type="number"></input>
+              <label htmlFor='id'>ID: </label>
+              <input id="id" type="text"/>
             </div>
+
             <input type="submit" value="Search" />     
           </form>
         </div> 

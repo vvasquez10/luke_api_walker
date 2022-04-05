@@ -1,52 +1,31 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 
-const peopleProps = ['name', 'height', 'mass', 'birth_year'];
-const filmsProps = ['title', 'director', 'producer', 'characters'];
-const starshipsProps = ['name', 'model', 'manufacturer', 'max_atmosphering_speed'];
-const speciesProps = ['name', 'classification', 'designation', 'skin_colors'];
-const vehiclesProps = ['name', 'model', 'manufacturer', 'passengers'];
-const planetsProps = ['name', 'rotation_period', 'climate', 'population'];
+const auxObject = {
+    people: ["name", "height", "mass", "birth_year"],
+    films: ["title", "director", "producer", "characters"],
+    starships: ["name", "model", "manufacturer", "max_atmosphering_speed"],
+    species: ["name", "classification", "designation", "skin_colors"],
+    vehicles: ["name", "model", "manufacturer", "passengers"],
+    planets: ["name", "rotation_period", "climate", "population"],
+}
+  
 
 function Response ( props ) {
 
-    const [paramList, setParamList] = useState( [] );
-
-       
-    switch(props.categoria) {
-        case 'people':
-            setParamList( (paramListPrev) => [...peopleProps] ); 
-            break;
-        case 'films':
-            setParamList( (paramListPrev) => [...filmsProps] );
-            break;
-        case 'starships':
-            setParamList( (paramListPrev) => [...starshipsProps] );
-            break;
-        case 'species':
-            setParamList( (paramListPrev) => [...speciesProps] );
-            break;
-        case 'vehicles':
-            setParamList( (paramListPrev) => [...vehiclesProps] );
-            break;
-        case 'planets':
-            setParamList( (paramListPrev) => [...planetsProps] );
-            break;
-        default:
-            console.log("Error al cargar los parametros.");
-        } 
-    
+    let cat = props.categoria;
+    const [paramList, setParamList] = useState([]);     
+  
 
     return(
         <>            
-            {props.responseData &&   
-                <>
-                    <h2>{props.responseData[paramList[0]]}</h2>                             
-                    <li>{props.responseData[paramList[1]]}</li>
-                    <li>{props.responseData[paramList[2]]}</li>
-                    <li>{props.responseData[paramList[3]]}</li>
-                    
-                </>
+            {props.responseData &&                  
+                <div>                   
+                    <h2>{props.responseData[auxObject[props.categoria][0]]}</h2>                             
+                    <h3>{props.responseData[auxObject[props.categoria][1]]}</h3>
+                    <h3>{props.responseData[auxObject[props.categoria][2]]}</h3>
+                    <h3>{props.responseData[auxObject[props.categoria][3]]}</h3>                  
+                </div>
             }                  
         </>
     );
