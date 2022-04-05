@@ -55,24 +55,22 @@ function App( props ) {
   */
 
   return (
-    <BrowserRouter>
-      <div className="App">   
-      <Route exact path="/" render = { (routeProps) => 
-        <>
-          <div>        
-            <Formulario handleRequest={handleRequest}/>                
-          </div>  
-          <div className="Result">
-            <Response responseData={responseData} categoria = {categoria}/>          
-          </div>
-        </>
-      } /> 
+      <div className="App"> 
+      <BrowserRouter>  
+        <Route path="/" render = { (routeProps) => 
+          <>
+            <div>        
+              <Formulario handleRequest={handleRequest}/>                
+            </div>  
+            <div className="Result">
+              <Response responseData={responseData} categoria = {categoria}/>          
+            </div>
+          </>
+        } /> 
 
-      <Route exact path="/:id" render= {(routeProps) => <Response {...routeProps} setIdentificador={setIdentificador(Number(routeProps.match.params.id))} setCategoria={setCategoria("people")}  /> } />
-      
+        <Route exact path="/:id" render= {(routeProps) => <Response {...routeProps} setIdentificador={setIdentificador(Number(routeProps.match.params.id))} setCategoria={setCategoria("people")}  /> } />
+      </BrowserRouter>
       </div>
-    </BrowserRouter>
-
   );
 }
 
