@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 
 const auxObject = {
     people: ["name", "height", "mass", "birth_year"],
@@ -13,9 +12,17 @@ const auxObject = {
 
 function Response ( props ) {
 
-    let cat = props.categoria;
-    const [paramList, setParamList] = useState([]);     
-  
+    /*
+    let urlID = Number(props.match.params.id);
+
+    console.log(urlID);
+
+    if(urlID !== undefined){
+        props.setIdentificador(urlID);
+        props.setCategoria("people");
+        props.consumeAPI();
+    }
+*/
 
     return(
         <>            
